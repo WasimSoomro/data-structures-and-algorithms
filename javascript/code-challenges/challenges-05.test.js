@@ -26,6 +26,7 @@ Write a function named addValues that, given an array of numbers as input, uses 
 
 const addValues = (arr) => {
   // Solution code here...
+  return arr.reduce((sum, value) => sum + value, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -38,10 +39,12 @@ Write a function named addPurchases that, given an array of objects as input, us
   purchasePrice: 399
 }
 
+
 ------------------------------------------------------------------------------------------------ */
 
 const addPurchases = (arr) => {
   // Solution code here...
+  return arr.reduce((total, object) => total + object.purchasePrice, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -54,6 +57,7 @@ Note: You may not use the array's built-in length property.
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
+  return arr.reduce((total, element) => total + 1, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -114,8 +118,11 @@ let starWarsData = [{
 
 const returnNames = (arr) => {
   // Solution code here...
+  return arr.reduce((names, starWarsData) => {
+    names.push(starWarsData.name);
+    return names;
+  }, []);
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
@@ -124,10 +131,14 @@ Write a function named reversedString that takes in a string and returns a strin
 Note: You must use reduce for this challenge. You may not use the built-in .reverse() string method.
 ------------------------------------------------------------------------------------------------ */
 
+// 'Code 301' -> ['C', 'o', 'd', 'e']
 const reversedString = (str) => {
   // Solution code here...
+  return str.split('').reduce((acc, curVal) => {
+    return curVal + acc;
+  },'');
 };
-
+//solution gone over in CodeReview
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
 
