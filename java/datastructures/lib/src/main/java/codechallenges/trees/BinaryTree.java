@@ -4,6 +4,28 @@ import java.util.ArrayList;
 
 public class BinaryTree<T> {
   Node<T> root;
+
+  //Find MAX VALUE - code challenge 16
+  public Number findMaximumValue() {
+    return findMaximumValue(root, Double.NEGATIVE_INFINITY);
+  }
+  private Number findMaximumValue(Node<Number> node, double maxSoFar) {
+    if (node == null) {
+      return maxSoFar;
+    }
+
+    if (node.value.doubleValue() > maxSoFar) {
+      maxSoFar = node.value.doubleValue();
+    }
+
+    maxSoFar = Math.max(findMaximumValue(node.leftNode, maxSoFar), maxSoFar);
+    maxSoFar = Math.max(findMaximumValue(node.rightNode, maxSoFar), maxSoFar);
+
+    return maxSoFar;
+  }
+
+// Code Challenge 15 below
+
   public Object[] preOrderTraversal() {
     ArrayList<T> outputList = new ArrayList<>();
     preOrder(root, outputList);
@@ -41,3 +63,5 @@ public class BinaryTree<T> {
     }
   }
 }
+
+//Chat GPT Help
