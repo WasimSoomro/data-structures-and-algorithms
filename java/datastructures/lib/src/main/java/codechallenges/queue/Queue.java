@@ -8,24 +8,32 @@ public class Queue<T>
 
   public void enqueue(T valueToEnqueue)
   {
-    // TODO: implement me
+    Node<T> newNode = new Node<>(valueToEnqueue);
+    if (back != null) newNode.next = back;
+    back = newNode;
+    if (front == null) front = back;
   }
 
   public T dequeue()
   {
-    // TODO: implement me
-    return null;
+    if (front == null) return null;
+    T value = front.value;
+    front = front.next;
+    if (front == null) back = null;
+    return value;
+
   }
 
   public T peek()
   {
-    // TODO: implement me
-    return null;
+    return front != null ? front.value : null;
+
   }
 
   public boolean isEmpty()
   {
-    // TODO: implement me
-    return false;
+    return front == null;
   }
 }
+
+//referenced ChatGPT

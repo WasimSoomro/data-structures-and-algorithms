@@ -2,13 +2,10 @@ package codechallenges.stack;
 
   public class Node<T>
   {
-    T value;
+    public T value;
     Node<T> next;
 
-    Node(T value)
-    {
-      this.value = value;
-    }
+    Node(T value) {this.value = value;}
   }
 
 
