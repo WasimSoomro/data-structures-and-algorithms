@@ -2,28 +2,34 @@ package codechallenges.stack;
 import codechallenges.stack.Node;
 public class Stack<T>
 {
-  Node<T> top;
+  public Node<T> top;
 
   public void push(T valueToPush)
   {
-    // TODO: implement me
+    Node<T> newNode = new Node<>(valueToPush);
+    newNode.next = top;
+    top = newNode;
   }
 
   public T pop()
   {
-    // TODO: implement me
-    return null;
+    if (top == null) return null;
+    T value = top.value;
+    top = top.next;
+    return value;
   }
 
   public T peek()
   {
-    // TODO: implement me
-    return null;
+    return top != null ? top.value : null;
   }
+
 
   public boolean isEmpty()
   {
-    // TODO: implement me
-    return false;
+    return top == null;
   }
 }
+
+
+//Referenced ChatGPT
