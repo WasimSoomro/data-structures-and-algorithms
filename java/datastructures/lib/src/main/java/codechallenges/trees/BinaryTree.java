@@ -62,6 +62,34 @@ public class BinaryTree<T> {
       outputList.add(node.value); // Add the current node value to the list
     }
   }
+
+
+  //CodeChallenge17
+  public Object[] breadthFirstTraversal() {
+    if (root == null) {
+      return new Object[0];
+    }
+
+    ArrayList<T> outputList = new ArrayList<>();
+    Queue<Node<T>> queue = new LinkedList<>();
+    queue.add(root);
+
+    while (!queue.isEmpty()) {
+      Node<T> current = queue.poll();
+      outputList.add(current.value);
+
+      if (current.leftNode != null) {
+        queue.add(current.leftNode);
+      }
+
+      if (current.rightNode != null) {
+        queue.add(current.rightNode);
+      }
+    }
+
+    return outputList.toArray();
+  }
+
 }
 
 //Chat GPT Help
