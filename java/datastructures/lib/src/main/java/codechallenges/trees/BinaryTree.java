@@ -90,6 +90,32 @@ public class BinaryTree<T> {
     return outputList.toArray();
   }
 
+  //CodeChallenge18
+  public BinaryTree<String> fizzBuzzTree() {
+    BinaryTree<String> newTree = new BinaryTree<>();
+    newTree.root = fizzBuzzTree(root);
+    return newTree;
+  }
+
+  private Node<String> fizzBuzzTree(Node<T> node) {
+    if (node == null) return null;
+
+    String newValue;
+    int value = Integer.parseInt(node.value.toString());
+
+    if (value % 3 == 0 && value % 5 == 0) newValue = "FizzBuzz";
+    else if (value % 3 == 0) newValue = "Fizz";
+    else if (value % 5 == 0) newValue = "Buzz";
+    else newValue = String.valueOf(value);
+
+    Node<String> newNode = new Node<>(newValue);
+    newNode.leftNode = fizzBuzzTree(node.leftNode);
+    newNode.rightNode = fizzBuzzTree(node.rightNode);
+
+    return newNode;
+  }
+
+
 }
 
 //Chat GPT Help
