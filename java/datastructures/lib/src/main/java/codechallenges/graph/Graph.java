@@ -92,6 +92,30 @@ public class Graph {
     return totalCost;
   }
 
+  public List<String> depthFirst(String startVertex) {
+    List<String> result = new ArrayList<>();
+    Set<String> visited = new HashSet<>();
+
+    if (!adjacencyList.containsKey(startVertex)) {
+      throw new IllegalArgumentException("The vertex does not exist.");
+    }
+
+    depthFirstHelper(startVertex, visited, result);
+    return result;
+  }
+
+  private void depthFirstHelper(String vertex, Set<String> visited, List<String> result) {
+    visited.add(vertex);
+    result.add(vertex);
+
+    for (Edge neighbor : adjacencyList.get(vertex)) {
+      if (!visited.contains(neighbor.getVertex())) {
+        depthFirstHelper(neighbor.getVertex(), visited, result);
+      }
+    }
+  }
+
+
   public static class Edge {
     String vertex;
     int weight;
