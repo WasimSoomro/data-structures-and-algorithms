@@ -37,6 +37,33 @@ public class Graph {
     return adjacencyList.size();
   }
 
+  public List<String> breadthFirst(String startVertex) {
+    List<String> result = new ArrayList<>();
+    Set<String> visited = new HashSet<>();
+    Queue<String> queue = new LinkedList<>();
+
+    if (!adjacencyList.containsKey(startVertex)) {
+      throw new IllegalArgumentException("The vertex does not exist.");
+    }
+
+    queue.add(startVertex);
+    visited.add(startVertex);
+
+    while (!queue.isEmpty()) {
+      String current = queue.poll();
+      result.add(current);
+
+      for (Edge neighbor : adjacencyList.get(current)) {
+        if (!visited.contains(neighbor.getVertex())) {
+          visited.add(neighbor.getVertex());
+          queue.add(neighbor.getVertex());
+        }
+      }
+    }
+
+    return result;
+  }
+
   public static class Edge {
     String vertex;
     int weight;
