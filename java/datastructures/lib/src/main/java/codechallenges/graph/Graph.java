@@ -64,6 +64,34 @@ public class Graph {
     return result;
   }
 
+  public Integer businessTrip(String[] cities) {
+    int totalCost = 0;
+
+    for (int i = 0; i < cities.length - 1; i++) {
+      String currentCity = cities[i];
+      String nextCity = cities[i + 1];
+      boolean hasDirectFlight = false;
+
+      if (!adjacencyList.containsKey(currentCity) || !adjacencyList.containsKey(nextCity)) {
+        return null;
+      }
+
+      for (Edge neighbor : adjacencyList.get(currentCity)) {
+        if (neighbor.getVertex().equals(nextCity)) {
+          totalCost += neighbor.getWeight();
+          hasDirectFlight = true;
+          break;
+        }
+      }
+
+      if (!hasDirectFlight) {
+        return null;
+      }
+    }
+
+    return totalCost;
+  }
+
   public static class Edge {
     String vertex;
     int weight;
